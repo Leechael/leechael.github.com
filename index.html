@@ -16,9 +16,6 @@ layout: page
   	<li>
   		<a href="http://t.sina.com.cn/leechael" target="_blank"><img class="favicon" src="http://www.google.com/s2/favicons?domain=t.sina.com.cn" />Leechael@weibo.com</a>
   	</li>
-  	<li>
-  		<a href="http://www.google.com/profiles/yanleech" target="_blank"><img class="favicon" src="http://www.google.com/s2/favicons?domain=google.com" />Leechael's Google Profile</a>
-  	</li>
   </ul>
   <p>Maybe you want to subscribe my blog, feed is here: <a href="/atom.xml">/atom.xml</a></p>
 </div>
@@ -26,7 +23,7 @@ layout: page
 <ul class="archive">
   <h2>Latest blog posts from Leechael</h2>
 {% for post in site.posts %}
-  {% if post.type != 'demo' %}
+  {% if post.type == nil %}
   <li><a href="{{ post.url }}">{{ post.title }}</a><abbr class="post_date">{{ post.date | date_to_string }}</abbr></li>
   {% endif %}
 {% endfor %}

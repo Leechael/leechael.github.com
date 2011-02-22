@@ -14,7 +14,8 @@ layout: nil
    <email>yanleech@gmail.com</email>
  </author>
 
- {% for post in site.posts %}
+{% for post in site.posts %}
+ {% if post.type == nil %}
  <entry>
    <title>{{ post.title | xml_escape }}</title>
    <link href="http://leechael.github.com{{ post.url }}"/>
@@ -22,6 +23,7 @@ layout: nil
    <id>http://leechael.github.com{{ post.id }}</id>
    <content type="html">{{ post.content | xml_escape }}</content>
  </entry>
- {% endfor %}
+ {% endif %}
+{% endfor %}
  
 </feed>
