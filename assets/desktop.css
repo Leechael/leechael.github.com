@@ -1,0 +1,100 @@
+@charset "UTF-8";
+
+body {
+  background: #f0f0f0;
+}
+
+#header, #content {
+  margin: 0 auto;
+  width: 960px;
+}
+
+#content {
+  padding: 20px 40px;
+  background: #fff;
+}
+
+.site_title {
+  font-family: "Josefin Slab", "Hiragino Sans GB", "Hiragino Sans GB W3", sans-serif;
+  font-style: normal;
+  font-size: 30px;
+  font-weight: 700;
+  letter-spacing: -2px;
+  word-spacing: 0.3em;
+  -moz-text-shadow: #ddd 1px 1px 1px;
+  -webkit-text-shadow: #ddd 1px 1px 1px;
+  text-shadow: #ddd 1px 1px 1px;
+}
+
+.site_title a {
+  text-decoration: none;
+  color: #000;
+  -moz-text-shadow: #ddd 1px 1px 1px;
+  -webkit-text-shadow: #ddd 1px 1px 1px;
+  text-shadow: #ddd 1px 1px 1px;
+}
+
+.site_title a:visited {
+  color: #555;
+}
+
+.site_title a:hover {
+  border-bottom: 1px dotted #777;
+}
+
+.post {
+  font: normal 16px "Philosopher", "Hiragino Sans GB", "Hiragino Sans GB W3", sans-serif;
+  font-weight: 600;
+}
+
+.post_title {
+  font: normal 20px "Cardo", "Hiragino Sans GB", "Hiragino Sans GB W3", sans-serif;
+  font-weight: bold;
+  background: #947953;
+  margin: 0;
+  padding: 20px;
+}
+
+.post_title a {
+  color: #fff;
+  text-decoration: none;
+  border-bottom: 1px dotted #eaeaea;
+}
+
+.post_title a:hover {
+  border-bottom: 1px solid #fff;
+}
+
+.post_meta {
+  font-size: 12px;
+  color: #555;
+  margin: 0;
+  padding: 10px 30px;
+  border-bottom: 1px solid #eee;
+}
+
+.post_body pre, .post_body code {
+  font: normal 13px "Anonymous Pro", "Hiragino Sans GB", "Hiragino Sans GB W3", sans-serif;
+  font-weight: normal;
+  line-height: 1.2em;
+  color: #444;
+}
+
+.post_body {
+  line-height: 1.6em;
+  color: #333;
+  width: 500px;
+}
+
+.post_body p {
+  margin-bottom: 1em;
+}
+
+.post_body ul {
+  list-style: circle;
+}
+
+.post_body ul, .post_body ol {
+  margin-top: 1em;
+  margin-bottom: 1em;
+}

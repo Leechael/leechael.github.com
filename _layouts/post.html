@@ -7,19 +7,34 @@
 <head>
   <meta charset="utf-8" />
   <meta http-equiv="content-type" content="text/html;charset=utf-8" />
-  <title>{{ page.title }}</title>
+  <title>{{ page.title }} - Leechael's Weblog</title>
+  <link href="http://fonts.googleapis.com/css?family=Philosopher|Cardo|Anonymous+Pro|Josefin+Slab:700" rel="stylesheet" type="text/css" />
+  <link href="/assets/desktop.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
-  <div class="header">
+  <div id="header">
+
+    <a href="#nav" data-title="Goto" rel="nofollow">Skip to Navigation</a>
+    <h2 class="site_title">
+      <a href="/">Leechael's Weblog</a>
+    </h2>
   </div>
 
-  <div class="container post">
-    <h1>
+  <div id="content" class="post">
+    <h1 class="post_title">
     	<a href="{{ page.url }}">{{ page.title }}</a>
     </h1>
-    <div class="body">
+    <div class="post_meta">
+      <span class="post_author">Leechael</a> @ <time>{{ page.date | date_to_string }}</time>
+    </div>
+    <div class="post_body">
 {{ content }}
     </div>
   </div>
+
+  <ul id="nav">
+    <li><a href="/">Home</a></li>
+    <li><a href="/archives.html">Archives</a></li>
+  </ul>
 </body>
 </html>
