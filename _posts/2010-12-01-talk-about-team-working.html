@@ -1,0 +1,87 @@
+---
+layout: post
+title: 说说小团队开发(1)
+---
+<p>从看到的一篇东西说起吧： <a href="http://1-byte.jp/2010/11/30/team_development" target="_blank">少人数開発に役立つ5つのまとめ</a></p>
+
+<p>不会日文的用机器翻译，我也是这样看完的（不想看日文的就不要点击了）。因为这篇东西是对几篇文章的总结，我就简单总结和列出一些要点。</p>
+
+<h3><a href="http://blog.madoro.org/mn/84" target="_blank">スタートアップ企業で8年間Webの開発をしてみての反省点いろいろ</a></h3>
+
+<ol>
+  <li>谨慎考虑究竟要做的是什么（YAGNI）
+<ol>
+  <li>关系型数据库的使用
+<ol>
+  <li>是否需要使用事务</li>
+  <li>锁的范围：是什么导致了数据库死锁(deadlock)</li>
+  <li>遵循范式的设计；谨慎考虑反范式的设计</li>
+</ol></li>
+  <li>切忌在服务器配置上铺张浪费，够用则好</li>
+  <li>HTTP头是否被正确地设置？</li>
+  <li>浏览器缓存/中转代理服务器缓存是否被正确利用？</li>
+  <li>Log rorating 是否正确地运作？</li>
+  <li>对全部log文件进行监控</li>
+  <li>是否进行了测试？测试结果是否正常？</li>
+  <li>测试是否经常被进行？结果是否正常？</li>
+  <li>服务器出现问题时，是否能够在最短时间内收到通知？</li>
+  <li>重复的工作是否已经全部自动化？</li>
+  <li>把握好文档的粒度：现有文档是否最新？</li>
+  <li>有没有多余的文档？</li>
+</ol></li>
+  <li>考虑使用现有的产品
+<ol>
+  <li>不要重复制作 framework</li>
+  <li>自行开发：性能问题及扩展性问题——尽可能使用现有的解决方案</li>
+  <li>新人的培训问题：考虑现有资源，Google it.</li>
+</ol></li>
+  <li>模块化开发：松耦合</li>
+  <li>技术负债需要尽早还清</li>
+  <li>购买合适的服务器：服务器要易于扩展。</li>
+  <li>要有专职的服务器维护人员</li>
+  <li>考虑云服务</li>
+  <li>创建好的公司文化</li>
+  <li>新人员：在完成一个阶段的任务后再考虑补入新人员</li>
+  <li>晨会：每天？每周？或是公司内部研讨会？这些都尽可能避免</li>
+  <li>公司人员间的距离</li>
+  <li>人才储备：考虑内部推荐</li>
+</ol>
+
+<h3><a href="http://engineer.blog.reet.co.jp/2010/10/knack_of_multiple_developing/" target="_blank">複数人(2-3人)でウェブサービスを開発するコツ</a></h3>
+
+<ol>
+  <li>开发环境
+<ol>
+  <li>使用 VMware ESXi 构建开发环境</li>
+  <li>Bug Tracking System + VCS: redmine/trac + git/subversion</li>
+</ol></li>
+  <li>规范化
+<ol>
+  <li>有约定的编码规范，例如 Zend Framework 的编码规范</li>
+  <li>一分钟晨会：昨天干了什么，今天打算干什么</li>
+  <li>即使坐在隔壁也使用 Skype 或 IRC 通话：工作的状态被打断了是一件很困扰的事情。</li>
+</ol></li>
+  <li>开发
+<ol>
+  <li>使用 tickets 进行任务分配</li>
+  <li>测试驱动开发</li>
+  <li>灵活使用 VCS 的 hooks</li>
+  <li>灵活使用 redmine 的 code review 插件</li>
+</ol></li>
+  <li>结束开发以后
+<ol>
+  <li>文档化</li>
+</ol></li>
+</ol>
+
+<p>还有一篇译文（当然是英文翻译到日文的），直接给出英文版链接： <a href="http://nvie.com/posts/a-successful-git-branching-model" target="_blank">A successful Git Branching model</a></p>
+
+<h3>自动化测试</h3>
+
+<p>单元测试，Selenium，PHPUnit。有这几个关键字足矣（资料自己找去 <code class="emotion">:D</code>  ）。</p>
+
+<h3>这篇完了</h3>
+
+<p>当然也有好部分内容没有翻译过来，原文链接已经给出，不做传声筒。</p>
+
+<p>这是第一篇，所以肯定也有第二篇，下一篇再写点自己的东西。（这篇水分太多了？）</p>

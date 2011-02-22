@@ -1,0 +1,35 @@
+---
+layout: post
+title: 问题解决笔记三则
+---
+<h3>改用 homebrew 作为包管理工具</h3>
+<p>改用了 homebrew 作为包管理工具。 <a href="http://twitter.com/jjgod" target="_blank">@jjgod</a> 有一篇<a href="http://blog.jjgod.org/2009/12/21/homebrew-package-management/" target="_blank">对 homebrew 的介绍</a>，不过文中说的安装方法有点繁琐；我本就是想打算用 homebrew 来管理这些工具的。</p>
+<p>官方提供了一个 <a href="http://gist.github.com/323731" target="_blank">Ruby 安装脚本</a>，因此也可以通过这个方法进行安装：</p>
+<blockquote><p>
+<code>ruby -e "$(curl http://gist.github.com/raw/323731/install_homebrew.rb)"</code>
+</p></blockquote>
+<p>由于 homebrew 的哲学之一，就是避免使用 sudo，将程序的 owner 更改为 root，所以需要更改默认安装目录的权限来避免因为权限问题而出现的操作失败：</p>
+<blockquote><p>
+<code>sudo chown -R `whoami` /usr/local</code>
+</p></blockquote>
+<p>我是完整卸载 MacPorts 后才安装的 homebrew 的，自然得把缺的东西的装回来，倒是得先把一些工具装回来：</p>
+<blockquote><p>
+    <code>brew install git wget rsync</code>
+</p></blockquote>
+<p>至于 Mercurial，homebrew 给出一个提示让我使用 pip 安装：</p>
+<blockquote><p>
+    <code>brew install pip &amp;&amp; pip install mercurial</code>
+</p></blockquote>
+<h3>MySQL 无法启动</h3>
+<p>由于改用了 homebrew 作为包管理工具，原来 MacPorts 安装的 MySQL 得重新安装，但安装结束后却得到了一个错误，<q>ERROR! Manager of pid-file quit without updating file</q>，求救于 Google 大神，发现是 MacPorts <a href="http://nixcraft.com/databases-servers/14483-starting-mysql-error-manager-pid-file-quit-without-updating-file.html#post24524" target="_blank">卸载时没有清理干净 MySQL 进程导致的问题</a>，<code>killall mysql</code>，然后进行剩余步骤：</p>
+<blockquote>
+<p>
+<code>mysql_install_db</code><br>
+<code>launchctl unload -w ~/Library/LaunchAgents/com.mysql.mysqld.plist</code><br>
+<code>cp /usr/local/Cellar/mysql/5*/com.mysql.mysqld.plist ~/Library/LaunchAgents</code><br>
+<code>launchctl load -w ~/Library/LaunchAgents/com.mysql.mysqld.plist</code>
+</p>
+</blockquote>
+<p>还得给 .profile 文件加上 alias，<q>alias mysqlctl=”/usr/local/Cellar/mysql/5.1.47/share/mysql/mysql.server”</q>，保存，<code>source ~/.profile</code>，然后 <code>mysqlctl start</code>，搞定。</p>
+<h3>MacVim 的配置问题</h3>
+<p>用上了 <a href="http://www.vim.org/scripts/script.php?script_id=2975" target="_blank">fugitive.vim</a> 才知道 MacVim 的 $PATH 是有问题的，打开 Preferences，激活 Launch Vim processes in a login shell 这个选项，打开一个新的 MacVim 窗口，<code>:!echo $PATH</code>，问题就这样解决了。</p>

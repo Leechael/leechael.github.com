@@ -1,0 +1,13 @@
+---
+layout: post
+title: "z3n: web based checklist"
+---
+<p><img src="/images/z3n_2010.02.02.jpg" alt="early Sreenshot of z3n"></p>
+<h3>z3n 是什么呢？</h3>
+<p>z3n 是一个可以用作 checklist / to-do list 的小工具。它需要 PHP 5.3.0 或以上版本才能运行。对于 Windows 用户来说，下载一个 <a href="http://www.wampserver.com/en/" target="_blank">WAMP5</a>，再进行一些简单的设置即可运行。这个小工具并不建议于公共空间中运行——因为这是仅是一个小工具，没有任何对校验用户身份的代码。</p>
+<p>z3n 的安装十分简单，在 MySQL 中创建一个数据库，然后在导入 <strong>z3n.init.sql</strong> 进行数据库的初始化；这些操作你都可以通过 PHPMyAdmin 完成。然后把 core 目录下的 config.example.php 重命名为 config.php，然后填写相应项进行设置。对于本地运行、例如利用 WAMP5 简单快速部署 z3n 的朋友，只需设置 Z3N_MYSQL_USERNAME，Z3N_MYSQL_PASSWORD，Z3N_MYSQL_SCHEMATA 这三个值就可以了。如果你觉得页面显示 Leechael 的这样的文字很碍眼，你可以把 Z3N_USERNAME 更改为你想要的字眼，例如 “Simpson” 或者 “Mr. Potatohead”；中文也是可以的，只要记得该文件是使用 UTF-8 编码格式保存即可。另一个设置是 Z3N_BACKGROUND_IMAGE，我在压缩包里面放了四张背景图片，根据喜好把图片名字替换 Z3N_BACKGROUND_IMAGE 的值即可。</p>
+<p>输入条目时，可以通过按下 <code>enter</code> 保存；如果按下的是 <code>ctrl + enter</code>，则是在保存当前条目的同时创建一个新的条目，以保证你整个输入流程是连续的。</p>
+<p>Z3N 是基于 BSD 协议发布，请随意使用。下载地址：<del>http://yan-yan.info/files/z3n.tar.gz</del>(文件已移除。)</p>
+<p>Z3N 的原型是 <a href="http://twitter.com/Livid" target="_blank">@Livid</a> 旧作 Project-Babel 中的 zen，一个很好用的小工具，但我们并不需要 Project-Babel 完整的功能，所以， Z3N 诞生了。</p>
+<p>这是一个利用空余时间制作的小东西，没有进行严谨的调试，如果你在使用中出现莫名其妙的情况，请留言告知。</p>
+<p>对了，你需要一个多人可协作版本的 Z3N 吗？ <code class="emotion">;)</code></p>

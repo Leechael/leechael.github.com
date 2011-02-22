@@ -1,0 +1,14 @@
+---
+layout: post
+title: Buggy IE6, maybe a new IE6 bug
+---
+<p><a href="http://img.ly/FAv" target="_blank" target="_blank"><img src="/images/large_buggy_ie6.jpg" alt="Did you see the buggy ie6 screenshot?"></a></p>
+<p>If you hadn’t see the screenshot above, get it here: <a href="http://img.ly/FAv" target="_blank">http://img.ly/FAv</a>.</p>
+<p>In the screenshot, from top to bottom: IE6 and IE7 on the left, IE8 and Chromium on the right.</p>
+<p>I’m not sure someone else had been mention this bug before or not. </p>
+<p>Telling whole story may take many hours. In short, I working in a project and I make a layout with <a href="http://www.alistapart.com/articles/fauxabsolutepositioning/" target="_blank">Faux Absolute Positioning</a>. I need lightbox effect for photos and I choose <a href="http://leandrovieira.com/projects/jquery/lightbox/" target="_blank">jQuery Lightbox plugin</a>. Than the bug occurs. <em>When I click the photo, the overlay is out, but no photo there</em>.</p>
+<p>Let me show you an example: <a href="/files/buggy-ie6/buggy.html" target="_blank">/files/buggy-ie6/buggy.html</a>.</p>
+<p>You can test the page above, it show up correctly under IE 7, IE 8, and Firefox 3.6, Chromium 5.0.355.0 (41601), and Opera 10.50. ONLY IE 6 rendering it in incorrect way. I’m use same photo here and use it twice.</p>
+<p>I got two solution later on. First one, remove <code>float</code> property for <code>.row</code>, but this one maybe broke up Faux Absolute Positioning. The second one it, do float element cleaning before rendering the element in absolute position.</p>
+<p>I’m poor in language,  and here show you my two solutions: <a href="/files/buggy-ie6/fixed-1.html" target="_blank">solution one</a>, <a href="/files/buggy-ie6/fixed-2.html" target="_blank">solution two</a>.</p>
+<p>That’s not whole story. In my case, I fixed this problem by add an CSS rule for <code>.box</code>: <code>width: auto !important</code>. I don’t know why and time limit, I can’t do test deeply and find out why.</p>

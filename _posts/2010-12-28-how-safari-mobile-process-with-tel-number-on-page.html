@@ -1,0 +1,9 @@
+---
+layout: post
+title: safari mobile 如何处理页面中的电话号码
+---
+<p>在 <a href="http://microformats.org/wiki/mobile" target="_blank">MicroFormats的报告</a> 中，其实已经知道，<strong>iOS4 中的 mobile safari 不支持 <a href="http://microformats.org/wiki/hCard" target="_blank">hCard</a></strong>。但此前的试验中，我误认为 iOS4 中的 mobile safari 是支持 hCard 的；经过试验后，结论是误判：原因是 mobile safari 会自动将页面中的电话号码自动转换成为可以拨打的电话号码（format-detection header）。</p>
+<p>format-detection 会在页面载入后，转化页面上的电话号码为可拨打电话的链接。对于后续通过 JavaScript 插入的内容而言，format-detection 无效。</p>
+<p>但是苹果提供了另一个解决方案：<a href="http://developer.apple.com/library/safari/#featuredarticles/iPhoneURLScheme_Reference/Articles/PhoneLinks.html" target="_blank">URL Scheme 中的 phone link</a>。实际上也不算是一个 apple-only 的解决方案，<a href="http://tools.ietf.org/html/rfc2806" target="_blank">RFC2806</a> 和 <a href="http://tools.ietf.org/html/rfc3966">RFC3966</a> 是描述 Tel URI 的标准。从苹果文档中看到，它只简单实现了 RFC2806 中的支持。</p>
+<p>而 Tel URI 在关闭 format-detection 后是仍然可用的。</p>
+<p>BTW，总结文果然很水的感觉。</p>

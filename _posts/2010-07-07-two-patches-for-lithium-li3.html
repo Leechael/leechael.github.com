@@ -1,0 +1,35 @@
+---
+layout: post
+title: Two patches for Lithium (li3)
+---
+<p>First, added method <code>_toBoolean</code> to <em>Lithium\data\source\database\adapter\MySql</em>:</p>
+<pre>    protected function _toBoolean($value) {
+        return (int) parent::_toBoolean($value);
+    }
+</pre>
+<p>Now Lithium treat tinyint(1) in MySQL as boolean type, but when you insert/update with a field has been defined as tinyint(1), Lithium will try insert boolean type, then an SQL error will throws.</p>
+<p>The second patch is for <em>Lithium\data\source\Database</em>. Try this:</p>
+<pre>class User extends Lithium\data\Model {}
+
+$user = User::create();
+$user-&gt;name = 'Leechael';
+$user-&gt;email = 'blah@blah.blah';
+$user-&gt;blah = 'Field that NOT exists in schema';
+$user-&gt;save();
+</pre>
+<p>Than you will got an SQL error, said <q>unknown column `blah`</q>. The solution is add a few lines in method Database::create() and Database::update(). First one, go to line 190:</p>
+<pre>while (list($field, $value) = each($data['fields'])) { // This line is what we looking for!
+    // Insert following block!
+    if (!isset($schema[$field])) {
+        continue;
+    }
+// other codes ....
+</pre>
+<p>Second, go to line line 274 (after previous patched):</p>
+<pre>while (list($field, $value) = each($data['fields'])) { // You looking for this!
+    if (!isset($schema[$field])) {
+        continue;
+    }
+// other codes ....
+</pre>
+<p>Done.</p>

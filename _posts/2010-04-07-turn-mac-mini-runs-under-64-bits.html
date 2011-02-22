@@ -1,0 +1,12 @@
+---
+layout: post
+title: 把 Mac Mini 切换到 64-bits 模式
+---
+<p>这是 2009 年 3 月那个版本的 <a href="http://support.apple.com/kb/SP505" target="_blank">Mac Mini</a>，CPU 为 Intel Core 2 Duo 2.0GHz (P7350)。</p>
+<p>大致原理为修改 <code>/System/Library/CoreServices/</code> 的 boot.efi。首次尝试时，我试着用 xxd 修改，结果启动不了，幸好翻出一个系统盘，能打开一个 shell 进行恢复。如果你的 Mac Mini 型号和我改掉的这个一样，可以在<a href="http://www.mediafire.com/file/oyzdznjty5f/boot64.zip" target="_blank">这里</a> 下载已经修改好的 boot.efi。</p>
+<p>至于如何修改可以参考这两篇：</p>
+<ul>
+<li><a href="http://www.osxbook.com/blog/2009/08/31/is-your-machine-good-enough-for-snow-leopard-k64/" target="_blank">Is Your Machine Good Enough for Snow Leopard K64?</a></li>
+<li><a href="http://www39.atwiki.jp/macmini/pages/30.html" target="_blank">Snow Leopardを64bitカーネルで動作させる</a></li>
+</ul>
+<p>步骤不多，也不难。最重要的是要准备用于恢复的光盘。</p>

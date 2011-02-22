@@ -1,0 +1,24 @@
+---
+layout: post
+title: Ubuntu Installing Note
+---
+<ol>
+  <li>首先保证两个机器位于同一网段。</li>
+  <li>下载必须的文件：<a href="http://archive.ubuntu.com/ubuntu/dists/maverick/main/installer-i386/current/images/netboot/" target="_blank">http://archive.ubuntu.com/ubuntu/dists/maverick/main/installer-i386/current/images/netboot/</a> 中的 mini.iso，netboot.tar.gz，pxelinux.0， pxelinux.cfg 文件夹及其下的 default 文件。解压 netboot.tar.gz，注意不要给 netboot.tar.gz 中的 pxelinux.0 和 pxelinux.cfg 覆盖下载回来的同名文件。这里是下载 Ubuntu Maverick，时间不同了可能选择的版本也不同了。</li>
+  <li>下载 TFTPD32 的最新版本：<a href="http://tftpd32.jounin.net/tftpd32.html" target="_blank">http://tftpd32.jounin.net/tftpd32.html</a>。</li>
+  <li> TFTPD32 与前述下载的文件必须存于同一文件夹中。打开后点击 DHCP Server 的选项卡，IP Pool starting address 填入通过 netboot 安装 ubuntu 的机器(Target PC)的 IP，Boot File 填 pxelinux.0，WING/DNS Server、Default Router、Mask 按照实际情况填写，保存。</li>
+  <li>启动 Target PC，注意打开并设定网络启动，然后看看 TFTPD32 中显示的机器 MAC 地址是否 Target PC 的 MAC 地址。多看 Log viewer 中的信息。在文件复制完毕后，在 Target PC 上开始安装 Ubuntu。</li>
+  <li><strong>务必</strong>使用 LVM。这次安装的 500GB 硬盘分区方案：
+    <ul>
+      <li>/boot – 250M, ext2(还会选择其他 filesystem 么？)</li>
+      <li>/swap – 3G</li>
+      <li>/ – 30G, btrfs</li>
+      <li>/home – 200G, /ext4</li>
+      <li>/var – 分配所有的剩余空间，/ext4</li>
+    </ul>
+  </li>
+  <li>修改 /etc/apt/sources.list，<code>sudo apt-get update &amp;&amp; sudo apt-get upgrade</code></li>
+  <li><code>sudo apt-get install openssh-server</code>. See also: <a href="http://www.cyberciti.biz/tips/linux-unix-bsd-openssh-server-best-practices.html" target="_blank">Top 20 OpenSSH Server Best Security Practices</a></li>
+  <li><code>sudo apt-get install mysql-server apache2 libapache2-mod-php5 php5 php5-cli php5-mcrypt php5-curl php5-gd php5-mysql php5-sqlite php-pear</code></li>
+  <li><code>sudo apt-get install dnsmasq sysstat</code></li>
+</ol>

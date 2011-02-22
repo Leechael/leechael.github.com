@@ -1,0 +1,13 @@
+---
+layout: post
+title: 使用 PIL 修改图片大小
+---
+<p>速记一个使用 Python Imaging Library (PIL) 修改图片的方法。</p>
+<p><code>sudo apt-get install python-imaging</code></p>
+<p> 打开终端，</p>
+<p><code>import Image<br>
+img = Image.open('origin.jpg')<br>
+cropped = img.crop((x0, y0, x1, y1))<br>
+resized = cropped.resize((target_x, target_y), Image.ANTIALIAS)<br>
+resized.save('resized.jpg', quality=100)</code></p>
+<p>resize 时要加入 Image.ANTIALIAS 作为参数，保存时 quality 的值高一点也不是问题（我填了 100 才感觉满意），85或者90都比较差强人意。</p>

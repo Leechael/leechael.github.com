@@ -1,0 +1,25 @@
+---
+layout: post
+title: 在 shell prompt 中显示 git 的变更
+---
+<p>看到这样的一个东西，<a href="http://github.com/lvv/git-prompt/" target="_blank">git-prompt</a>。</p>
+<p>闲话略过不提，大概记下自己应用这东西的笔记。</p>
+<p>首先是 checkout 代码：<code>git clone http://github.com/lvv/git-prompt.git ~/src/</code>；这里假设你用户根目录下有一个叫做 <em>src</em> 的文件夹。</p>
+<p>在 Linux 中是 ~/.bashrc，在 Mac OS X 下是 ~/.profile，使用趁手的编辑打开这个文件，我这里是 <code>vim ~/.profile</code>，加入这句：<code>source ~/src/git-prompt/git-prompt.sh</code>。</p>
+<p>至此，安装完成。需要修改配置的话，把 <strong>git-prompt.conf</strong> 复制到用户根目录下并改名为 <strong>.git-prompt.conf</strong>，通过修改这个文件进行配置即可。</p>
+<p>我不喜欢那么长的一行 prompt，而且还会把你自定义的 <code>PS1</code> 给强制无效化。前一个问题简单修改一下 git-prompt.sh 就可以了，后一个问题就跟整个运作机制有关了。</p>
+<p>我对 git-prompt.sh 的修改很简单，将 601 行的 </p>
+<blockquote><p>
+<code>head_local="${head_local+$vcs_color$head_local }"</code>
+</p></blockquote>
+<p>改为：</p>
+<blockquote><p><code>head_local="\n${head_local+$vcs_color$head_local }"</code></p></blockquote>
+<p>将 659 行的</p>
+<blockquote><p>
+<code>PS1="$colors_reset$rc$head_local$color_who_where$dir_color$cwd$tai    l_local$dir_color$prompt_char $colors_reset"</code>
+</p></blockquote>
+<p>改为：</p>
+<blockquote><p>
+<code>PS1="\n$color_who_where$dir_color$cwd$tail_local$dir_color$colors_re    set$rc$head_local$colors_reset$prompt_char "</code>
+</p></blockquote>
+<p>完事。</p>
