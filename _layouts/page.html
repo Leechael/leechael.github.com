@@ -1,0 +1,25 @@
+---
+layout: base
+---
+<body>
+  <div id="header">
+    <ul class="header_nav">
+    	<li>
+    		<a href="#content" rel="nofollow">Skip to Content</a>
+    	</li>
+    </ul>
+    {% if page.title %}
+    <h2 class="site_title">
+      <a href="/">Leechael's Weblog</a>
+    </h2>
+    {% else %}
+    <h1 class="site_title">
+      <a href="/">Leechael's Weblog</a>
+    </h1>
+    {% endif %}
+  </div>
+
+  <div id="content">
+{{ content }}
+  </div>
+</body>

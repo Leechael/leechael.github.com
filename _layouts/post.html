@@ -1,20 +1,16 @@
-<!doctype html>
-<!--[if lt IE 7 ]><html lang="zh-cn" class="ie6"><![endif]-->
-<!--[if IE 7 ]><html lang="zh-cn" class="ie7"><![endif]-->
-<!--[if IE 8 ]><html lang="zh-cn" class="ie8"><![endif]-->
-<!--[if IE 9 ]><html lang="zh-cn" class="ie9"><![endif]-->
-<!--[if (gt IE 9)|!(IE)]><!--><html lang="zh-cn"><!--[endif]-->
-<head>
-  <meta charset="utf-8" />
-  <meta http-equiv="content-type" content="text/html;charset=utf-8" />
-  <title>{{ page.title }} - Leechael's Weblog</title>
-  <link href="http://fonts.googleapis.com/css?family=Philosopher|Cardo|Anonymous+Pro|Josefin+Slab:700" rel="stylesheet" type="text/css" />
-  <link href="/assets/desktop.css" rel="stylesheet" type="text/css" />
-</head>
+---
+layout: base
+---
 <body>
   <div id="header">
-
-    <a href="#nav" data-title="Goto" rel="nofollow">Skip to Navigation</a>
+    <ul class="header_nav">
+    	<li>
+    		<a href="/" rel="nofollow">Home</a>
+    	</li>
+    	<li>
+    		<a href="#content" rel="nofollow">Skip to Content</a>
+    	</li>
+    </ul>
     <h2 class="site_title">
       <a href="/">Leechael's Weblog</a>
     </h2>
@@ -31,10 +27,3 @@
 {{ content }}
     </div>
   </div>
-
-  <ul id="nav">
-    <li><a href="/">Home</a></li>
-    <li><a href="/archives.html">Archives</a></li>
-  </ul>
-</body>
-</html>
