@@ -5,10 +5,10 @@ layout: nil
 <feed xmlns="http://www.w3.org/2005/Atom">
  
  <title>Leechael's Weblog</title>
- <link href="http://leechael.github.com/atom.xml" rel="self"/>
- <link href="http://leechael.github.com/"/>
+ <link href="http://www.yan-yan.info/atom.xml" rel="self"/>
+ <link href="http://www.yan-yan.info/"/>
  <updated>{{ site.time | date_to_xmlschema }}</updated>
- <id>http://leechael.github.com/</id>
+ <id>http://www.yan-yan.info/</id>
  <author>
    <name>Leechael Yim</name>
    <email>yanleech@gmail.com</email>
@@ -18,9 +18,9 @@ layout: nil
  {% if post.type == nil %}
  <entry>
    <title>{{ post.title | xml_escape }}</title>
-   <link href="http://leechael.github.com{{ post.url }}"/>
+   <link href="http://www.yan-yan.info{{ post.url }}"/>
    <updated>{{ post.date | date_to_xmlschema }}</updated>
-   <id>http://leechael.github.com{{ post.id }}</id>
+   <id>http://www.yan-yan.info{{ post.id }}</id>
    <content type="html">{{ post.content | xml_escape }}</content>
  </entry>
  {% endif %}
