@@ -136,6 +136,19 @@ a:hover {
   box-shadow: #ccc 1px 1px 1px;
 }
 
+.post_body .illustration {
+  position: absolute;
+  left: 540px;
+}
+
+.post_body .illustration img {
+  border: 1px solid #ccc;
+}
+
+.post_body .illustration a {
+  border-bottom: none;
+}
+
 .header_nav {
   background: #40866a;
   list-style: none;
@@ -176,7 +189,7 @@ a:hover {
   margin: 10px 0;
 }
 
-.about {
+.about, .page404 {
   font-family: "Josefin Slab", "Hiragino Sans GB", "Hiragino Sans GB W3", sans-serif;
   font-size: 16px;
   color: #333;
@@ -199,4 +212,8 @@ a:hover {
   padding: 0 10px;
   min-width: 160px;
 
+}
+
+.page404 {
+  border-bottom: none;
 }
