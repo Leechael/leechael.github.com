@@ -72,7 +72,6 @@ a:hover {
 
 .post {
   font: normal 16px "Philosopher", "Hiragino Sans GB", sans-serif;
-  font-weight: 600;
 }
 
 .post_title {
@@ -132,6 +131,10 @@ a:hover {
 .post_body abbr {
   color: #555;
   border-bottom: none;
+}
+
+.post_body b, .post i, .post em, .post strong {
+  margin: 0 2px;
 }
 
 .post_body blockquote {
