@@ -124,8 +124,7 @@ a:hover {
 }
 
 .post_body ul, .post_body ol {
-  margin-top: 1em;
-  margin-bottom: 1em;
+  margin: 1em 0 1em 1.5em;
 }
 
 .post_body abbr {
@@ -156,6 +155,26 @@ a:hover {
 
 .post_body .illustration a {
   border-bottom: none;
+}
+
+.post_body code, .post_body pre.code {
+  background: #111;
+  padding: 1px 5px;
+  color: #fff;
+  -webkit-text-shadow: #000 1px 1px 1px;
+  -moz-text-shadow: #000 1px 1px 1px;
+  text-shadow: #000 1px 1px 1px;
+}
+
+.post_body pre.code {
+  margin: 1em 0 1em 1.5em;
+  padding: 7px 10px;
+  overflow: scroll;
+}
+
+.post_body pre.code:hover {
+  position: relative;
+  width: 720px;
 }
 
 .header_nav {

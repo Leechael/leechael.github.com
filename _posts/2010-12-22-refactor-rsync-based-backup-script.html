@@ -3,28 +3,45 @@ layout: post
 title: 重构 rsync 备份脚本小记
 ---
 <p>用于备份服务器的脚本坏了，猜测原因有二：</p>
-<p>* 登录服务器时验证失败了，<br>
-* 输出重定向有误。</p>
-<p>对于第一个问题，给脚本加上 <code>sudo -u USERNAME</code>，事实证明这是很笨而且无效的方法。 <code class="emotion">:(</code> </p>
+
+<ol>
+  <li>登录服务器时验证失败了，</li>
+  <li>输出重定向有误。</li>
+</ol>
+
+<p>对于第一个问题，给脚本加上 <code>sudo -u USERNAME</code>，事实证明这是很笨而且无效的方法。 <span class="emotion">:(</span> </p>
+
 <p>直接运行脚本是能够正常工作的。再看 <code>rsync</code> 的参数，我是这样写的：</p>
-<pre>rsync REMOTE_ALIAS:/path/to/somewhere/ /local/dir
-</pre>
+
+<pre class="code">rsync REMOTE_ALIAS:/path/to/somewhere/ /local/dir</pre>
+
 <p>用了 <code>ssh</code> 的 alias。笨方法是 <code>cp</code> 一份 <var>.ssh</var> 的设置到 <var>/root</var>目录下，另一个解决方案是使用 <code>rsync</code> 的 <var>-e</var> 参数：</p>
-<pre>rsync -e "ssh -i /home/MY_USERNAME/.ssh/id_rsa -p 333" REMOTE_USERNAME@IP:/path/to/somewher/ /local/dir
-</pre>
+
+<pre class="code">rsync -e "ssh -i /home/MY_USERNAME/.ssh/id_rsa -p 333" REMOTE_USERNAME@IP:/path/to/somewher/ /local/dir</pre>
+
 <p>通过 <var>-i</var> 指定 rsa 文件，通过 <var>-p</var> 指定端口(你不更改远程服务器的登录端口？)。</p>
+
 <p>至于输出重定向，主要是用于记录 rsync 的输出，主要是手误，改掉就好了。</p>
+
 <p>当然，折腾开了，也就多加点什么进去吧：</p>
-<p>* <code>nice</code>，减低备份工作的优先级。<br>
-* 对 <code>rsync</code> 的 exit status 进行判断，错误则给我发 Email。</p>
+
+<ol>
+  <li><code>nice</code>，减低备份工作的优先级。</li>
+  <li>对 <code>rsync</code> 的 exit status 进行判断，错误则给我发 Email。</li>
+</ol>
+
 <p>对于第一个需求，使用 <var>–rsync-path</var> 参数：</p>
-<pre>rsync --rsync-path="nice -n 19 rsync"
-</pre>
+
+<pre class="code">rsync --rsync-path="nice -n 19 rsync"</pre>
+
 <p>至于第二个需求，用 <code>sendemail</code> 解决这个需求：</p>
-<pre>sudo apt-get install sendemail libio-socket-ssl-perl libnet-ssleay-perl
-</pre>
+
+<pre class="code">sudo apt-get install sendemail libio-socket-ssl-perl libnet-ssleay-perl</pre>
+
 <p>然后加入脚本中：</p>
-<pre>sendemail -f bot@domain -t admin@domain \
+
+<pre class="code">
+sendemail -f bot@domain -t admin@domain \
     -u "["`date +'%F'`"] Backup fails" \
     -m "See log for more information." \
     -s smtp.gmail.com:587 \
@@ -32,4 +49,5 @@ title: 重构 rsync 备份脚本小记
     -xu your_account \
     -xp your_password
 </pre>
+
 <p>这里使用 Gmail 发送邮件，这个似乎可以抽离做第二个脚本（发送预警邮件），暂时也就这个样子好了。</p>
