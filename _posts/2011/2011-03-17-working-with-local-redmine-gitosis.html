@@ -1,0 +1,23 @@
+---
+layout: post
+title: 让 redmine_gitosis 允许自定义账户访问的方法
+---
+<p>工作环境使用 Redmine 作为项目管理软件，装上 redmine_gitosis 与 Git 进行交互。由于作为 Codebase 的机器拥有多个功用，例如自动构建（我这边打算做这个……），这个时候发现无法在机器中取出通过代码；在这里，作为 codebase 的机器和需要取出代码进行自动化行为的机器是同一个机器，假设是 <em>box</em>，自动化取出代码干活的帐号是 <em>bot</em>。</p>
+
+<p>问题的根源在于， redmine_gitosis 每一次的修改都会重新生成 <var>memebers</var> 的值。<code>bot@box</code> 这个帐号可以取出 gitosis-admin.git 修改配置文件，但是不能访问其他项目。</p>
+
+<p>经过摸索，解决方案是修改 redmine_redmine。打开 <var>vendor/plugins/redmine_gitosis/lib/gitosis.rb</var> 文件，将 57 行的：</p>
+
+<pre class="code" lang="ruby">
+conf["group #{name}"]['members'] = write_users.map{|u| u.gitosis_public_keys.active}.flatten.map{ |key| "#{key.identifier}" }.join(' ')
+</pre>
+
+<p>改为：</p>
+
+<pre class="code" lang="ruby">
+conf["group #{name}"]['members'] = write_users.map{|u| u.gitosis_public_keys.active}.flatten.map{ |key| "#{key.identifier}" }.push('bot@box').join(' ')
+</pre>
+
+<p>添加的 <code>push</code> 中的参数为 <strong>gitosis/keydir</strong> 目录中对应的 public key 文件名；在我这里，这一文件名是 <em>bot@box.pub</em>。</p>
+
+<p>保存后重启 mongrel 的 redmine 进程（我这边是 apache2 + mongrel），随便禁用/启用一个 public key 迫使更新 gitosis-admin 配置，如无意外的话，修改成功。</p>
