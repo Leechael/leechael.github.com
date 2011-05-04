@@ -126,6 +126,10 @@ a:hover {
   margin: 1em 0 1em 1.5em;
 }
 
+.post_body li {
+  margin-top: 1em;
+}
+
 .post_body abbr {
   color: #333;
   border-bottom: none;
@@ -141,6 +145,12 @@ a:hover {
   -webkit-box-shadow: #ccc 1px 1px 1px;
   -moz-box-shadow: #ccc 1px 1px 1px;
   box-shadow: #ccc 1px 1px 1px;
+}
+
+.post_body blockquote ul,
+.post_body blockquote ol {
+  margin: 1em 0;
+  padding-left: 0.5em;
 }
 
 .post_body .illustration {
