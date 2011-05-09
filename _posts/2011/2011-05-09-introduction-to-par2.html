@@ -1,0 +1,22 @@
+---
+layout: post
+title: parchive（par2)：类似 RAID 的数据校验和修复工具
+---
+
+<p><a href="http://myzsyweb.blogspot.com/2009/01/parchivepar2.html" title="校验及恢复工具Parchive(Par2)">先来一段简介：</a></p>
+
+<blockquote>
+<h4>Parchive: Parity Archive Volume Set</h4>
+<p>这个项目背后最初的想法是提供一个工具把类独立磁盘冗余阵列(RAID-like)系统的数据恢复能力思想应用到新闻组上多部分文档的发布和恢复。我们实现了那个目标。对这个规范的2.0版本我们的新目标是改善。</p> 
+<p>The technology is based on a 'Reed-Solomon Code' implementation that allows for recovery of any 'X' real data-blocks for 'X' parity data-blocks present. (Data-blocks referring to files OR much smaller virtual slices of files).</p>
+</blockquote>
+
+<p>我的理解，就是通过软件实现类似 RAID 的冗余方案，避免因为传输过程中的出错，通过适量的冗余文件添加数据恢复的功能。</p>
+
+<p>安装和使用都很简单，Debian/Ubuntu 下常规的 <code>sudo apt-get install par2</code>，Mac OS X 下通过 homebrew 安装即可：<code>sudo brew install par2</code>。</p>
+
+<p>由于 parchive 只是<strong>对单一文件提供冗余和校验的功能</strong>，因此并不生成新的文件，只是增加数个文件用于检验和恢复（增加的文件数目视乎 <var>-r</var> 这个参数的值；针对文件夹的话，肯定要结合 <var>tar</var> 确立方案了。</p>
+
+<p>我这里使用这个小东西的场景很简单，一个是服务器备份，本机机器每天跑 <var>rsync</var> 拉备份，每天做一份 snapshot，保留最新的三个 snapshot；snapshot 简单使用 <var>tar</var> 打包，然后使用 parchive 做检验和冗余。</p>
+
+<p>其实不排除某些信任不足的人，要求提供备份文件，这个时候就会使用 7z 分卷造成 DVD 大小，每个分卷文件造一份用于校验及修复的 parchive 文件。这个使用场景有点无语，不过也算是合适吧。</p>
