@@ -1,0 +1,32 @@
+---
+layout: post
+title: 在 Mac OS 10.7 上安装 MySQL 5.5.15 及 mysql-python
+---
+
+<p>首先，你需要下载 MySQL 5.5.15 的安装包：<a href="http://dev.mysql.com/downloads/mysql/" target="_blank" title="MySQL :: Download MySQL Community Server">http://dev.mysql.com/downloads/mysql/</a> 。请选择 64-bit 的 DMG 版本下载。我这边是广州电信，选择 <a href="mysql.ntu.edu.tw" target="_blank">mysql.ntu.edu.tw</a> 这一镜像下载，基本上是跑满速的。</p>
+
+<p>除了安装基本的 MySQL 服务以后，另外的两个文件 MySQLStartupItem.pkg 及 MySQL.prefPane 也依次打开进行安装，这样 MySQL 便会跟随系统启动而启动，并且会在系统设置面板添加一个管理面板。</p>
+
+<p>安装完毕后，可以通过命令行简单测试键入 <code>mysql</code>，在我这里，是能够进入 MySQL 命令行的交互窗口，整个安装过程是十分顺畅的。</p>
+
+<p>然后是 mysql-python：<code>sudo easy_install MySQL-python</code>。这一过程理应也是顺畅无助的，除非你遭遇和我类似的情况，在安装完成后，<code>import MySQLdb</code> 时提示 <q>Reason: image not found</q>。</p>
+
+<p>在这篇 <a href="http://stackoverflow.com/questions/4559699/python-mysqldb-and-library-not-loaded-libmysqlclient-16-dylib" target="_balnk">Python: MySQLdb and “Library not loaded: libmysqlclient.16.dylib”</a> 中，有人提及了一个办法，修改环境变量 <code>DYLD_LIBRARY_PATH</code>。在这里，我是把以下这行代码加入至 <code>~/.profile</code> 中，修复这一问题：</p>
+
+<pre lang="bash">
+export DYLD_LIBRARY_PATH="$DYLD_LIBRARY_PATH:/usr/local/mysql/lib"
+</pre>
+
+<p>至此，我这里是能够正常使用 python 和 MySQL 进行开发的了。整个过程中，参考了以下文章，如果上述文字未能解决你的问题，不妨看看这些文章：</p>
+
+<ul>
+	<li>
+		<a href="http://www.djangoapp.com/blog/2011/07/24/installation-of-mysql-server-on-mac-os-x-lion/" target="_blank">Installation of MySQL server on Mac OS X Lion</a>
+	</li>
+	<li>
+		<a href="http://hearrain.com/2011/01/494" target="_blank">Mac下MySql安装经历（含安装错误排查、卸载多种折腾）</a>
+	</li>
+	<li>
+		<a href="http://stackoverflow.com/questions/4559699/python-mysqldb-and-library-not-loaded-libmysqlclient-16-dylib" target="_blank">Python: MySQLdb and “Library not loaded: libmysqlclient.16.dylib”</a>
+	</li>
+</ul>
